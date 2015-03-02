@@ -1,0 +1,50 @@
+Source: crosswalk
+Section: web
+Priority: optional
+Maintainer: Xinchao He <xinchao.he@intel.com>
+Standards-Version: 3.9.5
+Homepage: https://crosswalk-project.org/
+Build-Depends:
+        debhelper (>= 9),
+	ninja-build,
+	pkg-config,
+	python,
+	gperf,
+	bison,
+	libglib2.0-dev,
+	libdbus-1-dev,
+	libdrm-dev,
+	libgtk2.0-dev,
+	libpulse-dev,
+	libfontconfig1-dev,
+	libpci-dev,
+	libpango1.0-dev,
+	libnss3-dev,
+	libsrtp0-dev,
+	libssl-dev,
+	libudev-dev,
+	libxslt1-dev,
+	libcap-dev,
+	libx11-dev,
+	libxi-dev,
+	libxcursor-dev,
+	libxcomposite-dev,
+	libxdamage-dev,
+	libxrandr-dev,
+	libxss-dev,
+	libxtst-dev,
+	libasound2-dev,
+	libicu-dev,
+	libjpeg-dev,
+	lib32z1 [amd64],
+	zlib1g [i386],
+	g++-multilib
+
+Package: crosswalk
+Architecture: any
+Pre-Depends: dpkg (>= 1.15.6)
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: HTML5 web runtime
+ Crosswalk is a web runtime for ambitious HTML5 applications. It provides all the
+ features of a modern browser, combined with deep device integration and an API
+ for adding native extensions.

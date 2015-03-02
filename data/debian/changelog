@@ -1,0 +1,5 @@
+crosswalk (11.40.277.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #775876)
+
+ -- Xinchao He <xinchao.he@intel.com>  Mon, 15 Dec 2014 14:12:36 +0800

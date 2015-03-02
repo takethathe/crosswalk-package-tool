@@ -1,0 +1,112 @@
+#!/usr/bin/make -f
+
+DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+DEB_BUILD_ARCH     ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_ARCH_BITS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_BITS)
+
+SRC_DIR := $(CURDIR)/$(DEB_TAR_SRCDIR)
+NINJA   := ninja
+SHELL	:= /bin/bash
+
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	rm -rf out
+	rm -rf build-desktop
+	rm -ff build-stamp
+
+	dh_clean
+
+build: build-arch build-indep
+
+build-arch: build-stamp
+
+build-indep: build-stamp
+
+build-stamp:
+	dh_testdir
+
+	export LDFLAGS="${LDFLAGS} -Wl,--no-keep-memory"
+
+	GYP_GENERATOR_FLAGS="output_dir=build-desktop" ./xwalk/gyp_xwalk xwalk/xwalk.gyp \
+		--depth=. \
+		-Dwerror= \
+		-Dchromeos=0 \
+		-Dclang=0 \
+		-Ddisable_nacl=1 \
+		-Denable_hidpi=1 \
+		-Dlinux_use_debug_fission=0 \
+		-Dlinux_use_gold_binary=0 \
+		-Dlinux_use_gold_flags=0 \
+		-Dremove_webcore_debug_symbols=0 \
+		-Dlinux_use_bundled_binutils=0 \
+		-Duse_ash=0 \
+		-Duse_aura=1 \
+		-Duse_cups=0 \
+		-Duse_gconf=0 \
+		-Duse_gnome_keyring=0 \
+		-Duse_kerberos=0 \
+		-Duse_system_bzip2=1 \
+		-Duse_system_expat=1 \
+		-Duse_system_ffmpeg=1 \
+		-Duse_system_flac=1 \
+		-Duse_system_fontconfig=1 \
+		-Duse_system_harfbuzz=1 \
+		-Duse_system_jsoncpp=1 \
+		-Duse_system_libevent=1 \
+		-Duse_system_libexif=1 \
+		-Duse_system_libjpeg=1 \
+		-Duse_system_libsrtp=1 \
+		-Duse_system_libusb=1 \
+		-Duse_system_libvpx=1 \
+		-Duse_system_libwebp=1 \
+		-Duse_system_libxnvctrl=1 \
+		-Duse_system_libxslt=1 \
+		-Duse_system_nspr=1 \
+		-Duse_system_openssl=1 \
+		-Duse_system_opus=1 \
+		-Duse_system_re2=1 \
+		-Duse_system_snappy=1 \
+		-Duse_system_speex=1 \
+		-Duse_system_zlib=1
+
+	$(NINJA) -C build-desktop/Release xwalk
+	./tools/licenses.py credits > build-desktop/Release/copyright
+
+	touch $@
+
+install: install-stamp
+
+install-stamp: build-stamp
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs -a
+	dh_installchangelogs -a
+	dh_install -a --sourcedir=.
+	dh_strip -p crosswalk
+	dh_link -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_installdeb -a
+	dh_shlibdeps -p crosswalk
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+
+.PHONY: build clean binary binary-indep binary-arch
+
+
+
+
+

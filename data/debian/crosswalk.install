@@ -1,0 +1,5 @@
+build-desktop/Release/xwalk usr/lib/xwalk
+build-desktop/Release/libffmpegsumo.so usr/lib/xwalk
+build-desktop/Release/icudtl.dat usr/lib/xwalk
+build-desktop/Release/xwalk.pak usr/lib/xwalk
+build-desktop/Release/copyright /usr/share/doc/crosswalk
