@@ -17,9 +17,9 @@ the Crosswalk runtime, and git must be functional.
 `crosswalk-package create 1`: This will setup the package generating
 envrionment under 'deb_build' directory. Please make sure run this
 command under Crosswalk directory. Please note that the last parameter
-means the 'debian version'.
+means the 'debian version', a number like 1, 2, 3...
 
 `crosswalk-package build`: Build the crosswalk deb binary, it will be
-generated under 'deb_build'
+generated under 'deb_package'
 
 That's all for now. More to come soon, and if all goes well, NPMs for new years.
