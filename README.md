@@ -22,4 +22,4 @@ means the 'debian version', a number like 1, 2, 3...
 `crosswalk-package build`: Build the crosswalk deb binary, it will be
 generated under 'deb_package'
 
-That's all for now. More to come soon, and if all goes well, NPMs for new years.
+That's all for now. More to come soon, and if all goes well, NPMs next.
