@@ -15,7 +15,7 @@ the Crosswalk runtime, and git must be functional.
 ### Usage
 
 `crosswalk-package create 1`: This will setup the package generating
-envrionment under 'deb_build' directory. Please make sure run this
+envrionment under 'deb_package' directory. Please make sure run this
 command under Crosswalk directory. Please note that the last parameter
 means the 'debian version', a number like 1, 2, 3...
 
