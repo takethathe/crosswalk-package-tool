@@ -2,4 +2,6 @@ build-desktop/Release/xwalk usr/lib/xwalk
 build-desktop/Release/libffmpegsumo.so usr/lib/xwalk
 build-desktop/Release/icudtl.dat usr/lib/xwalk
 build-desktop/Release/xwalk.pak usr/lib/xwalk
+build-desktop/Release/natives_blob.bin usr/lib/xwalk
+build-desktop/Release/snapshot_blob.bin usr/lib/xwalk
 build-desktop/Release/copyright /usr/share/doc/crosswalk
