@@ -4,4 +4,6 @@ build-desktop/Release/icudtl.dat usr/lib/xwalk
 build-desktop/Release/xwalk.pak usr/lib/xwalk
 build-desktop/Release/natives_blob.bin usr/lib/xwalk
 build-desktop/Release/snapshot_blob.bin usr/lib/xwalk
+build-desktop/Release/nacl_irt*.nexe usr/lib/xwalk
+build-desktop/Release/nacl_helper usr/lib/xwalk
 build-desktop/Release/copyright /usr/share/doc/crosswalk
